@@ -2,23 +2,23 @@ import {
   AppBar,
   Avatar,
   Box,
+  Drawer,
   IconButton,
   Menu,
   MenuItem,
+  Toolbar,
   Typography,
   styled,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React, { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { logout } from "../../features/auth/components/authSlice";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useSnackBar } from "../../components/snackbar.context";
-import { Drawer } from "@mui/material";
 import Spacer from "../../components/spacer.component";
+import { logout } from "../../features/auth/components/authSlice";
 import DrawerItems from "./drawer-items.component";
-import { Toolbar } from "@mui/material";
 import MobileDrawerAppBar from "./mobile-drawer-app-bar.component";
 
 const FlexEndBox = styled(Box)({
