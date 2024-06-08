@@ -18,6 +18,8 @@ import { useSnackBar } from "../../components/snackbar.context";
 import { Drawer } from "@mui/material";
 import Spacer from "../../components/spacer.component";
 import DrawerItems from "./drawer-items.component";
+import { Toolbar } from "@mui/material";
+import MobileDrawerAppBar from "./mobile-drawer-app-bar.component";
 
 const FlexEndBox = styled(Box)({
   display: "flex",
@@ -47,6 +49,16 @@ const MaxWidthBox = styled(Box)(({ theme }) => ({
   maxWidth: theme.dimensions.PCMaxWidth,
   minHeight: theme.dimensions.heightWithoutAppBar,
   overflow: "auto",
+}));
+
+const AppBarContainer = styled(Box)(({ theme }) => ({
+  width: "100%",
+  maxWidth: theme.dimensions.PCMaxWidth,
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  padding: "15px",
+  justifyContent: "space-between",
 }));
 
 export default function CustomMenu() {
@@ -83,56 +95,64 @@ export default function CustomMenu() {
         sx={{ backgroundColor: "bg.primary" }}
         elevation={isMobile ? 1 : 0}
       >
-        <FlexEndBox>
-          <IconButton onClick={handleOpenUserMenu}>
-            <Avatar
-              sx={{
-                backgroundColor: "white",
-                width: "35px",
-                height: "35px",
+        {isMobile ? (
+          <Toolbar disableGutters={!isMobile}>
+            <AppBarContainer>
+              <MobileDrawerAppBar handleLogout={handleLogout} />
+            </AppBarContainer>
+          </Toolbar>
+        ) : (
+          <FlexEndBox>
+            <IconButton onClick={handleOpenUserMenu}>
+              <Avatar
+                sx={{
+                  backgroundColor: "white",
+                  width: "35px",
+                  height: "35px",
+                }}
+              />
+            </IconButton>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={avatarMenu}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "center",
               }}
-            />
-          </IconButton>
-          <Menu
-            sx={{ mt: "45px" }}
-            id="menu-appbar"
-            anchorEl={avatarMenu}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-            slotProps={{
-              paper: {
-                sx: {
-                  width: "120px",
+              slotProps={{
+                paper: {
+                  sx: {
+                    width: "120px",
+                  },
                 },
-              },
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-            open={Boolean(avatarMenu)}
-            onClose={handleCloseUserMenu}
-          >
-            <MenuItem
-              key={1}
-              onClick={() => {
-                handleCloseUserMenu();
-                handleLogout();
               }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+              open={Boolean(avatarMenu)}
+              onClose={handleCloseUserMenu}
             >
-              <Typography
-                fontWeight="bold"
-                textAlign="center"
-                sx={{ margin: "0 auto" }}
+              <MenuItem
+                key={1}
+                onClick={() => {
+                  handleCloseUserMenu();
+                  handleLogout();
+                }}
               >
-                Sign Out
-              </Typography>
-            </MenuItem>
-          </Menu>
-        </FlexEndBox>
+                <Typography
+                  fontWeight="bold"
+                  textAlign="center"
+                  sx={{ margin: "0 auto" }}
+                >
+                  Sign Out
+                </Typography>
+              </MenuItem>
+            </Menu>
+          </FlexEndBox>
+        )}
       </AppBar>
 
       <CenterBox>
@@ -153,7 +173,6 @@ export default function CustomMenu() {
                 }}
               >
                 <Spacer size="xl" />
-
                 <DrawerItems />
               </Drawer>
             </Box>
