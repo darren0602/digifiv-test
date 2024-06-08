@@ -47,7 +47,7 @@ export default function App() {
       <SnackbarProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Router>
+          <Router basename="/digifiv-test">
             <Routes>
               <Route
                 path="/"
