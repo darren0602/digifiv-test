@@ -1,18 +1,11 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./store";
-import CustomMenu from "./infratsructure/layout/menu.layout";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import LoginScreen from "./features/auth/screens/login.screen";
-import UserListScreen from "./features/user/screens/user-list.screen";
+import { setUsers } from "./features/user/components/userSlice";
 import UserCreateScreen from "./features/user/screens/user-create.screen";
-import { SnackbarProvider } from "./components/snackbar.context";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import theme from "./infratsructure/theme";
+import UserListScreen from "./features/user/screens/user-list.screen";
+import CustomMenu from "./infratsructure/layout/menu.layout";
 
 const initialUsers = [
   { id: 1, name: "Tim", email: "tim@mail.com" },
@@ -37,33 +30,29 @@ const initialUsers = [
   { id: 20, name: "Liam", email: "liam@mail.com" },
 ];
 
-if (!localStorage.getItem("users")) {
-  localStorage.setItem("users", JSON.stringify(initialUsers));
-}
-
 export default function App() {
-  return (
-    <Provider store={store}>
-      <SnackbarProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Router basename="/digifiv-test">
-            <Routes>
-              {/* <Route
-                path="/"
-                element={<Navigate to="/login" replace={true} />}
-              /> */}
-              <Route path="/" element={<LoginScreen />} />
+  const dispatch = useDispatch();
 
-              <Route element={<CustomMenu />}>
-                <Route path="/users/list" element={<UserListScreen />} />
-                <Route path="/users/new" element={<UserCreateScreen />} />
-                <Route path="/logout" element={<div>Logout</div>} />
-              </Route>
-            </Routes>
-          </Router>
-        </ThemeProvider>
-      </SnackbarProvider>
-    </Provider>
+  useEffect(() => {
+    const usersFromLocalStorage = localStorage.getItem("users");
+    if (!usersFromLocalStorage) {
+      localStorage.setItem("users", JSON.stringify(initialUsers));
+      dispatch(setUsers(initialUsers));
+    } else {
+      dispatch(setUsers(JSON.parse(usersFromLocalStorage)));
+    }
+  }, [dispatch]);
+
+  return (
+    <Router basename="/digifiv-test">
+      <Routes>
+        <Route path="/" element={<LoginScreen />} />
+        <Route element={<CustomMenu />}>
+          <Route path="/users/list" element={<UserListScreen />} />
+          <Route path="/users/new" element={<UserCreateScreen />} />
+          <Route path="/logout" element={<div>Logout</div>} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }

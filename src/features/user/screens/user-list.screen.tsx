@@ -99,7 +99,7 @@ export default function UserListScreen() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/login");
+      navigate("/");
       snackBar.createSnackBar({
         message: "Login First",
         type: "error",

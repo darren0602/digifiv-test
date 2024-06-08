@@ -50,7 +50,7 @@ export default function UserCreateScreen() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/login");
+      navigate("/");
       snackBar.createSnackBar({
         message: "Login First",
         type: "error",

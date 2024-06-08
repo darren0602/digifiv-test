@@ -80,7 +80,7 @@ export default function CustomMenu() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
     snackBar.createSnackBar({
       message: "Logged Out",
       type: "success",

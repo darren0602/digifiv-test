@@ -19,6 +19,10 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setUsers: (state, action: PayloadAction<User[]>) => {
+      state.users = action.payload;
+      localStorage.setItem("users", JSON.stringify(state.users));
+    },
     removeUser: (state, action: PayloadAction<number>) => {
       state.users = state.users.filter((user) => user.id !== action.payload);
       localStorage.setItem("users", JSON.stringify(state.users));
@@ -39,7 +43,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { removeUser, addUser, updateUser } = userSlice.actions;
+export const { setUsers, removeUser, addUser, updateUser } = userSlice.actions;
 
 export const selectUsers = (state: RootState) => state.user.users;
 
