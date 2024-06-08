@@ -49,11 +49,11 @@ export default function App() {
           <CssBaseline />
           <Router basename="/digifiv-test">
             <Routes>
-              <Route
+              {/* <Route
                 path="/"
                 element={<Navigate to="/login" replace={true} />}
-              />
-              <Route path="/login" element={<LoginScreen />} />
+              /> */}
+              <Route path="/" element={<LoginScreen />} />
 
               <Route element={<CustomMenu />}>
                 <Route path="/users/list" element={<UserListScreen />} />
