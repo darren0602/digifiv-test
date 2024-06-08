@@ -3,25 +3,13 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Box,
   Grid,
   List,
   ListItem,
   Typography,
   styled,
 } from "@mui/material";
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
-const NavigationButtonBox = styled(Box)({
-  padding: "0x",
-  width: "100%",
-  display: "flex",
-  justifyContent: "flex-start",
-  alignItems: "center",
-  textTransform: "none",
-  marginTop: "5px",
-});
 
 const StyledListItem = styled(ListItem)({
   ":hover": { backgroundColor: "transparent" },
