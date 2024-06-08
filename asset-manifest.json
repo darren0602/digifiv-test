@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/digifiv-test/static/js/main.ad09d70a.js",
+    "main.js": "/digifiv-test/static/js/main.49daf328.js",
     "index.html": "/digifiv-test/index.html",
-    "main.ad09d70a.js.map": "/digifiv-test/static/js/main.ad09d70a.js.map"
+    "main.49daf328.js.map": "/digifiv-test/static/js/main.49daf328.js.map"
   },
   "entrypoints": [
-    "static/js/main.ad09d70a.js"
+    "static/js/main.49daf328.js"
   ]
 }
