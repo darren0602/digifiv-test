@@ -1,4 +1,5 @@
 {
+  "homepage": "https://darren0602.github.io/digifiv-test/",
   "name": "digifiv-test",
   "version": "0.1.0",
   "private": true,
@@ -28,7 +29,7 @@
     "yup": "^1.4.0"
   },
   "scripts": {
-    "predeploy": "yarn run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
