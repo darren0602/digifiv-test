@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.bb67216a.js",
-    "index.html": "/index.html",
-    "main.bb67216a.js.map": "/static/js/main.bb67216a.js.map"
+    "main.js": "/digifiv-test/static/js/main.bb67216a.js",
+    "index.html": "/digifiv-test/index.html",
+    "main.bb67216a.js.map": "/digifiv-test/static/js/main.bb67216a.js.map"
   },
   "entrypoints": [
     "static/js/main.bb67216a.js"
